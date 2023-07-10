@@ -1,0 +1,42 @@
+export async function obtenerClientes() {
+  const respuesta = await fetch(import.meta.env.VITE_URL_API);
+  const resultado = await respuesta.json();
+
+  return resultado;
+}
+
+export async function agregarCliente(datos) {
+  try {
+    const respuesta = fetch(import.meta.env.VITE_URL_API, {
+      method: "POST",
+      body: JSON.stringify(datos),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    await respuesta.json;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function obtenerCliente(id) {
+  const respuesta = await fetch(`${import.meta.env.VITE_URL_API}/${id}`);
+  const resultado = await respuesta.json();
+
+  return resultado;
+}
+export async function actualizarCliente(id, datos) {
+  try {
+    const respuesta = fetch(`${import.meta.env.VITE_URL_API}/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(datos),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    await respuesta.json;
+  } catch (error) {
+    console.log(error);
+  }
+}
